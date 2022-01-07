@@ -28,6 +28,14 @@ func main(){
 	}
 
 	Riddle(dog)
+
+	var cat Cat
+	cat.Name ="cat"
+	cat.Sound ="meow"
+	cat.NumberOfLegs = 4
+	cat.HasTail = true
+
+	Riddle(cat) // I CAN'T DO THAT
 }
 
 func Riddle(d Dog) {
