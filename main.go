@@ -3,6 +3,10 @@ package main
 import "fmt"
 
 // interface type
+type Animal interface {
+	Says() string
+	HowManyLegs() int
+}
 
 // Dog is a type for dogs
 type Dog struct{
@@ -11,12 +15,27 @@ type Dog struct{
 	NumberOfLegs int
 }
 
+func (d *Dog) Says() string {
+	return d.Sound
+}
+
+func (d *Dog) HowManyLegs() int {
+	return d.NumberOfLegs
+}
 // Cat is a type for cats
 type Cat struct {
 	Name string
 	Sound string
 	NumberOfLegs int
 	HasTail bool
+}
+
+func (c *Cat) Says() string {
+	return c.Sound
+}
+
+func (c *Cat) HowManyLegs() int {
+	return c.NumberOfLegs
 }
 
 func main(){
@@ -27,7 +46,7 @@ func main(){
 		NumberOfLegs: 4,
 	}
 
-	Riddle(dog)
+	Riddle(&dog)
 
 	var cat Cat
 	cat.Name ="cat"
@@ -35,10 +54,10 @@ func main(){
 	cat.NumberOfLegs = 4
 	cat.HasTail = true
 
-	Riddle(cat) // I CAN'T DO THAT
+	Riddle(&cat)
 }
 
-func Riddle(d Dog) {
-	riddle:= fmt.Sprintf(`This animal "says" %s and has %d legs.`, d.Sound,d.NumberOfLegs)
+func Riddle(a Animal) {
+	riddle:= fmt.Sprintf(`This animal "says" %s and has %d legs.`, a.Says(),a.HowManyLegs())
 	fmt.Println(riddle)
 }
